@@ -73,7 +73,7 @@ if st.session_state.logged_in:
 # --- UI ---
 
 if st.session_state.login_or_register:
-    st.title("Login")
+    st.markdown('<div class="sec-header">🔑 Login 🐃</div>', unsafe_allow_html=True)
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button("Login"):
