@@ -3,7 +3,7 @@ from supabase import create_client
 from supabase_utils import try_to_add_user, try_to_login
 from css_utils import css_style_str
 
-st.set_page_config(page_title="Login or Register", page_icon="🔑")
+st.set_page_config(page_title="Login or Register", page_icon="🐃")
 
 st.markdown(css_style_str(), unsafe_allow_html=True)
 # --- Callbacks (only set state, never call switch_page/rerun) ---
