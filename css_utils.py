@@ -1,5 +1,3 @@
-
-
 def css_style_str():
     return """
 <style>
@@ -26,9 +24,6 @@ def css_style_str():
 }
 
 
-#MainMenu, footer, header {visibility: hidden;}
-
-
 .post-card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 14px; padding: 18px 22px; margin-bottom: 14px;
@@ -51,7 +46,6 @@ def css_style_str():
 .post-divider { border: none; border-top: 1px solid var(--border); margin: 6px 0 12px; }
 .filter-bar { margin-bottom: 18px; }
 .empty-state { color: var(--text-dim); font-size: .9rem; text-align: center; padding: 40px 0; }
-
 
 
 .block-container {padding-top: 1.5rem; padding-bottom: 2rem;}
@@ -172,5 +166,34 @@ def css_style_str():
 
 """
 
-
-
+def sidebar_open_button():
+    """
+    Call this at the top of any page that hides the header.
+    Renders a ☰ button that opens the sidebar; it disappears once the sidebar is open.
+    Usage:  sidebar_open_button()
+    """
+    import streamlit as st
+    st.markdown("""
+    <style>
+    /* Only show the manual button when the sidebar is actually collapsed */
+    [data-testid="stSidebar"][aria-expanded="true"]  ~ * #sidebar-open-btn { display: none; }
+    #sidebar-open-btn {
+        position: fixed; top: 0.6rem; left: 0.6rem; z-index: 999999;
+        background: var(--surface, #1c1f2b);
+        border: 1px solid var(--border, #2a2d3e);
+        color: var(--text, #e2e8f0);
+        border-radius: 8px; padding: 4px 10px;
+        font-size: 1.2rem; cursor: pointer; line-height: 1;
+    }
+    #sidebar-open-btn:hover { border-color: var(--accent, #7c6af7); }
+    </style>
+    <button id="sidebar-open-btn"
+        onclick="
+            const sb = window.parent.document.querySelector('[data-testid=stSidebar]');
+            if (sb) {
+                const btn = sb.querySelector('button') || 
+                            window.parent.document.querySelector('[data-testid=stSidebarCollapsedControl] button');
+                if (btn) btn.click();
+            }
+        ">☰</button>
+    """, unsafe_allow_html=True)
