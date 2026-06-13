@@ -2,6 +2,7 @@ import streamlit as st
 import networkx as nx
 from pyvis.network import Network
 import tempfile
+from css_utils import css_style_str
 
 from supabase_utils import (
     get_all_users_info,
@@ -17,11 +18,15 @@ st.set_page_config(
     layout="wide"
 )
 
+
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 if not st.session_state.logged_in:
     st.switch_page("pages/login_or_register.py")
+
+st.markdown(css_style_str(), unsafe_allow_html=True)
+
 
 st.title("🌐 Social Network Graph")
 
