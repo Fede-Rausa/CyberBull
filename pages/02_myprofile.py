@@ -33,6 +33,8 @@ username = st.session_state.my_username
 
 # ── Options ──────────────────────────────────────────────────────────────────
 ANIMALS = [
+    "🐃 Water Buffalo",
+
     # --- Original ---
     "🐶 Dog", "🐱 Cat", "🐺 Wolf", "🦊 Fox", "🐻 Bear", "🐼 Panda",
     "🦁 Lion", "🐯 Tiger", "🐸 Frog", "🦅 Eagle", "🐬 Dolphin",
@@ -91,7 +93,7 @@ with st.spinner("Loading profile…"):
 
 # ── Header ────────────────────────────────────────────────────────────────────
 st.markdown(
-    f'<div class="sec-header">👤 My Profile</div>'
+    f'<div class="sec-header">👤 My Profile 🐃</div>'
     f'<div class="avatar-lg">{username[0].upper()}</div>'
     f'<div style="font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:20px">{username}</div>',
     unsafe_allow_html=True,

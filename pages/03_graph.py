@@ -29,8 +29,7 @@ if not st.session_state.logged_in:
 st.markdown(css_style_str(), unsafe_allow_html=True)
 
 
-st.title("🌐 Social Network Graph")
-
+st.markdown('<div class="sec-header">🌐 Social Network Graph 🐃</div>', unsafe_allow_html=True)
 
 # =====================================================
 # SUPABASE CLIENT
@@ -61,7 +60,6 @@ def build_graph():
     # Add nodes
     descriptions_dict = {}
 
-    print(users)
     for user in users:
 
         username = (
@@ -240,7 +238,8 @@ with st.spinner("Loading graph..."):
     G, descriptions_dict = build_graph0()
 
 if st.sidebar.button("Refresh graph"):
-    G, descriptions_dict = build_graph()
+    with st.spinner("Loading graph..."):
+        G, descriptions_dict = build_graph()
 
 # =====================================================
 # SIDEBAR FILTERS

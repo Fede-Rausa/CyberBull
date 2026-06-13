@@ -17,7 +17,7 @@ username = st.session_state.get("my_username", "")
 st.markdown(css_style_str(), unsafe_allow_html=True)
 
 # ── Header ────────────────────────────────────────────────────────────────────
-st.markdown('<div class="sec-header">📰 Posts Feed</div>', unsafe_allow_html=True)
+st.markdown('<div class="sec-header">📰 Posts Feed 🐃</div>', unsafe_allow_html=True)
 
 # ── Filter bar ────────────────────────────────────────────────────────────────
 col_search, col_filter = st.columns([3, 2])

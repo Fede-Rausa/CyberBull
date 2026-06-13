@@ -90,7 +90,7 @@ def avatar_letter(name):
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def view_list():
-    st.markdown('<div class="sec-header">👥 Contacts</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sec-header">👥 Contacts 🐃</div>', unsafe_allow_html=True)
 
     col_search, _ = st.columns([2, 3])
     with col_search:
