@@ -149,25 +149,25 @@ def view_list():
            
             with c1:
                 if is_following:
-                    if st.button("Unfollow", key=f"unf_{user}", type="secondary"):
+                    if st.button("Unfollow", key=f"unf_{user}", type="secondary", use_container_width=True):
                         unfollow(me, user, client)
                         cached_followers.clear()
                         cached_following.clear()
                         cached_friends.clear()
                         st.rerun()
                 else:
-                    if st.button("Follow", key=f"fol_{user}", type="primary"):
+                    if st.button("Follow", key=f"fol_{user}", type="primary", use_container_width=True):
                         follow(me, user, client)
                         cached_followers.clear()
                         cached_following.clear()
                         cached_friends.clear()
                         st.rerun()
             with c2:
-                if st.button("💬 Chat", key=f"chat_{user}"):
+                if st.button("💬 Chat", key=f"chat_{user}", use_container_width=True):
                     go("chat", user)
                     st.rerun()
             with c3:
-                if st.button("👤 Profile", key=f"prof_{user}"):
+                if st.button("👤 Profile", key=f"prof_{user}", use_container_width=True):
                     go("profile", user)
                     st.rerun()
 
