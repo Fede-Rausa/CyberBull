@@ -49,6 +49,7 @@ def user_login(username, password):
     else:
         st.session_state.logged_in = False
         st.session_state.login_error = res['message']
+    st.rerun()
 
 # --- Initialize session state ---
 
