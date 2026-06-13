@@ -144,7 +144,7 @@ def view_list():
                 unsafe_allow_html=True,
             )
 
-            c1, c2, c3, _ = st.columns([1, 1, 1, 4])
+            c1, c2, c3 = st.columns([1, 1, 1])
 
            
             with c1:
