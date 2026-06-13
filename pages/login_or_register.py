@@ -76,7 +76,9 @@ if st.session_state.login_or_register:
     st.title("Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    st.button("Login", on_click=user_login, args=(username, password))
+    if st.button("Login"):
+        user_login(username, password)
+        st.rerun()
     st.button("Don't have an account? Register here",
               on_click=register_to_login, args=(False,))
     if st.session_state.login_error:
