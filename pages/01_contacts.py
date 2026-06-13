@@ -51,7 +51,6 @@ def go_list():
 # ── Shared CSS ────────────────────────────────────────────────────────────────
 st.markdown(css_style_str(), unsafe_allow_html=True)
 
-
 # ═══════════════════════════════════════════════════════════════════════════════
 # HELPERS
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -114,35 +113,41 @@ def view_list():
         is_following = user in followeds   # am I following this person?
         is_follower = user in followers     # is this person following me?
         is_friend = is_following and is_follower # mutual following = friends
-        badge = '<span class="friend-badge">✓ Following</span>' if is_following else ""
-        badge1 = '<span class="friend-badge">✓ Friends</span>' if is_friend else ""
-        badge2 = '<span class="friend-badge">✓ Follower</span>' if is_follower else ""
+        if is_friend:
+            badge = '<span class="friend-badge">✓ Friends</span>'
+        elif is_follower:
+            badge = '<span class="friend-badge">✓ Follower</span>'
+        elif is_following:
+            badge = '<span class="friend-badge">✓ Following</span>'
+        else:
+            badge = ""
 
         with st.container():
-            c1, c2, c3, c4 = st.columns([5, 1, 1, 1])
-            with c1:
 
-                if all_users_details[user]["animal"]:
-                    v1 = all_users_details[user]["animal"][0]
-                else:
-                    v1 = ""
+            if all_users_details[user]["animal"]:
+                v1 = all_users_details[user]["animal"][0]
+            else:
+                v1 = ""
 
-                if all_users_details[user]["food"]:
-                    v2 = all_users_details[user]["food"][0]
-                else:
-                    v2 = ""
+            if all_users_details[user]["food"]:
+                v2 = all_users_details[user]["food"][0]
+            else:
+                v2 = ""
 
-                st.markdown(
-                    f'<div class="contact-card">'
-                    f'  <div class="avatar">{avatar_letter(user)}</div>'
-                    f'  <span class="pref-pill">{v1}</span>'
-                    f'  <span class="pref-pill">{v2}</span>'
-                    f'  <span class="contact-name">{user}{badge}{badge2}{badge1}</span>'
-                    f'</div>',
-                    unsafe_allow_html=True,
-                )
+            st.markdown(
+                f'<div class="contact-card">'
+                f'  <span class="contact-name">{user}{badge}</span>'
+                #f'  <div class="avatar">{avatar_letter(user)}</div>'
+                f'  <span class="pref-pill">{v1}</span>'
+                f'  <span class="pref-pill">{v2}</span>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
+
+            c1, c2, c3, _ = st.columns([1, 1, 1, 4])
+
            
-            with c2:
+            with c1:
                 if is_following:
                     if st.button("Unfollow", key=f"unf_{user}", type="secondary"):
                         unfollow(me, user, client)
@@ -157,11 +162,11 @@ def view_list():
                         cached_following.clear()
                         cached_friends.clear()
                         st.rerun()
-            with c3:
+            with c2:
                 if st.button("💬 Chat", key=f"chat_{user}"):
                     go("chat", user)
                     st.rerun()
-            with c4:
+            with c3:
                 if st.button("👤 Profile", key=f"prof_{user}"):
                     go("profile", user)
                     st.rerun()
