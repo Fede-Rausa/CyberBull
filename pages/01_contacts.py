@@ -145,15 +145,18 @@ def view_list():
                 unsafe_allow_html=True,
             )
 
-            if st.button("i", key=f"sel_{user}"):#, use_container_width=True):
-                if st.session_state.selected_contact == user:
-                    st.session_state.selected_contact = ''
-                else:
-                    st.session_state.selected_contact = user
-                st.rerun()
 
             is_selected = (st.session_state.selected_contact == user)
 
+            if is_selected:
+                if st.button("-", key=f"sel_{user}"):
+                    st.session_state.selected_contact = ''
+                    st.rerun()
+            else:
+                if st.button("+", key=f"sel_{user}"):
+                    st.session_state.selected_contact = user
+                    st.rerun()
+            
             if is_selected:
 
                 c1, c2, c3 = st.columns(3, gap=None)
