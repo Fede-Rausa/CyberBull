@@ -44,11 +44,11 @@ client = st.session_state["supabase_client"]
 # =====================================================
 
 @st.cache_data(ttl=60)
-def build_graph0():
-    return build_graph()
-
-
 def build_graph():
+    return build_graph0()
+
+
+def build_graph0():
 
     G = nx.DiGraph()
 
@@ -235,11 +235,11 @@ Degree: {degree}{d1}{d3}{d2}
 # =====================================================
 
 with st.spinner("Loading graph..."):
-    G, descriptions_dict = build_graph0()
+    G, descriptions_dict = build_graph()
 
 if st.sidebar.button("Refresh graph"):
     with st.spinner("Loading graph..."):
-        G, descriptions_dict = build_graph()
+        G, descriptions_dict = build_graph0()
 
 # =====================================================
 # SIDEBAR FILTERS
