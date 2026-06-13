@@ -35,7 +35,8 @@ if "selected_user" not in st.session_state:
     st.session_state.selected_user = None
 if "chat_input_key" not in st.session_state:
     st.session_state.chat_input_key = 0
-
+if "selected_contact" not in st.session_state:
+    st.session_state.selected_contact = ''
 
 def go(view, user=None):
     st.session_state.contacts_view = view
@@ -144,32 +145,44 @@ def view_list():
                 unsafe_allow_html=True,
             )
 
-            c1, c2, c3 = st.columns([1, 1, 1])
-
-           
-            with c1:
-                if is_following:
-                    if st.button("Unfollow", key=f"unf_{user}", type="secondary", use_container_width=True):
-                        unfollow(me, user, client)
-                        cached_followers.clear()
-                        cached_following.clear()
-                        cached_friends.clear()
-                        st.rerun()
+            if st.button("i", key=f"sel_{user}"):#, use_container_width=True):
+                if st.session_state.selected_contact == user:
+                    st.session_state.selected_contact = ''
                 else:
-                    if st.button("Follow", key=f"fol_{user}", type="primary", use_container_width=True):
-                        follow(me, user, client)
-                        cached_followers.clear()
-                        cached_following.clear()
-                        cached_friends.clear()
+                    st.session_state.selected_contact = user
+                st.rerun()
+
+            is_selected = (st.session_state.selected_contact == user)
+
+            if is_selected:
+
+                c1, c2, c3 = st.columns(3, gap=None)
+
+            
+                with c1:
+                    if is_following:
+                        if st.button("Unfollow", key=f"unf_{user}", type="secondary", use_container_width=True):
+                            unfollow(me, user, client)
+                            cached_followers.clear()
+                            cached_following.clear()
+                            cached_friends.clear()
+                            st.rerun()
+                    else:
+                        if st.button("Follow", key=f"fol_{user}", type="secondary", use_container_width=True):
+                            follow(me, user, client)
+                            cached_followers.clear()
+                            cached_following.clear()
+                            cached_friends.clear()
+                            st.rerun()
+                with c2:
+                    if st.button("💬 Chat", key=f"chat_{user}", use_container_width=True):
+                        go("chat", user)
                         st.rerun()
-            with c2:
-                if st.button("💬 Chat", key=f"chat_{user}", use_container_width=True):
-                    go("chat", user)
-                    st.rerun()
-            with c3:
-                if st.button("👤 Profile", key=f"prof_{user}", use_container_width=True):
-                    go("profile", user)
-                    st.rerun()
+                with c3:
+                    if st.button("👤 Profile", key=f"prof_{user}", use_container_width=True):
+                        go("profile", user)
+                        st.rerun()
+
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
