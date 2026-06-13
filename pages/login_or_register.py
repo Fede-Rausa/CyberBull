@@ -48,10 +48,10 @@ def user_login(username, password):
     if res['success']:
         st.session_state.logged_in = True   # ✅ only set state here
         st.session_state.my_username = username
+        st.rerun()
     else:
         st.session_state.logged_in = False
         st.session_state.login_error = res['message']
-    st.rerun()
 
 # --- Initialize session state ---
 
