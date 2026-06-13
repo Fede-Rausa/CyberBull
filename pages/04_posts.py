@@ -2,7 +2,7 @@ import streamlit as st
 from supabase_utils import get_all_posts
 from css_utils import css_style_str
 
-st.set_page_config(page_title="Posts", page_icon="📰", layout="wide")
+st.set_page_config(page_title="Posts", page_icon=':water_buffalo:', layout="wide")
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False

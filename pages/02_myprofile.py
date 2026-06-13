@@ -10,7 +10,7 @@ from supabase_utils import (
     delete_user
 )
 
-st.set_page_config(page_title="My Profile", page_icon="👤")
+st.set_page_config(page_title="My Profile", page_icon=':water_buffalo:')
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False

@@ -3,14 +3,14 @@ from css_utils import css_style_str
 
 st.set_page_config(
     page_title="Social Graph",
-    page_icon="👋",
+    page_icon=':water_buffalo:',
 )
 
 st.markdown(css_style_str(), unsafe_allow_html=True)
 
 st.markdown(
     """
-    # Welcome to CyberBull! 👋
+    # Welcome to CyberBull! 🐃
 
     The first social network where cyberbullying is not just tolerated, but actively encouraged.
 

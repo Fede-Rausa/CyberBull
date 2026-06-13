@@ -15,7 +15,8 @@ from supabase_utils import (
 
 st.set_page_config(
     page_title="Graph",
-    layout="wide"
+    layout="wide",
+    page_icon=':water_buffalo:'
 )
 
 
